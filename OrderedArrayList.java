@@ -33,4 +33,11 @@ public void add(int index, T element){
   sorting();
   }
 
+public T set(int index, T element){
+  T original = super.get(index);
+  super.add(element);
+  super.remove(index);
+  sorting();
+  return original;
+  }
 }

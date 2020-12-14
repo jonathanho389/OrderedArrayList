@@ -5,5 +5,7 @@ public class orderedTester{
     brian.add(7); brian.add(4); brian.add(3); brian.add(2); brian.add(6);
     brian.add(2, 5);
     System.out.println(brian);
+    System.out.println(brian.set(4, 8));
+    System.out.println(brian);
   }
 }

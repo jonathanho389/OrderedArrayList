@@ -8,36 +8,33 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
     super(startingCapacity);
   }
 
-  private void sorting(){
-    int size = super.size();
-    T original = super.get(0);
-    for(int i = 0;i < super.size();i++){
-      for(int j = i + 1;j < super.size();j++){
-        if((Integer)super.get(i) > (Integer)super.get(j)){
-          original = super.get(i);
-          super.set(i, super.get(j));
-          super.set(j, original);
-        }
-      }
-    }
+private int finder(T element){
+  int index = 0;
+  if(element == null){
+    throw new IllegalArgumentException("no null values allowed");
   }
+  while(index < super.size() && element.compareTo(super.get(index)) > 0){
+    index++;
+  }
+  return index;
+}
 
 public boolean add(T element){
-  super.add(element);
-  sorting();
+  super.add(finder(element),element);
   return true;
 }
 
 public void add(int index, T element){
-  super.add(element);
-  sorting();
+  super.add(finder(element),element);
   }
 
 public T set(int index, T element){
+  if(element == null){
+    throw new IllegalArgumentException("no null values allowed");
+  }
   T original = super.get(index);
-  super.add(element);
   super.remove(index);
-  sorting();
+  super.add(finder(element), element);
   return original;
   }
 }
